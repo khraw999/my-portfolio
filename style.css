@@ -1,0 +1,326 @@
+:root {
+  --background: #101512;
+  --surface: #151d18;
+  --surface-soft: #19231c;
+  --text: #edf2ed;
+  --muted: #a1ada4;
+  --subtle: #718076;
+  --line: #2a382f;
+  --accent: #a7d9ae;
+  --font: "DM Sans", Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--background); color: var(--text); font-family: var(--font); line-height: 1.65; }
+a { color: inherit; text-decoration: none; }
+.header, main, footer { width: min(100% - 56px, 1120px); margin-inline: auto; }
+.header { height: 76px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); }
+.wordmark { font-size: 12px; font-weight: 700; letter-spacing: .12em; }
+nav { display: flex; gap: 28px; }
+nav a, footer a { color: var(--muted); font-size: 12px; transition: color .2s; }
+nav a:hover, footer a:hover { color: var(--accent); }
+.intro { padding: 94px 0 60px; max-width: 680px; }
+.eyebrow { color: var(--accent); font-size: 10px; font-weight: 600; letter-spacing: .15em; margin: 0 0 17px; }
+h1 { font-size: clamp(42px, 7vw, 68px); line-height: 1.08; letter-spacing: -.055em; margin: 0 0 20px; font-weight: 600; }
+.intro-text { max-width: 570px; color: var(--muted); font-size: 15px; margin: 0; }
+.projects { display: grid; gap: 24px; }
+.project { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(320px, .92fr); border: 1px solid var(--line); background: var(--surface); min-width: 0; }
+
+/* Two screenshot slots: a portrait phone capture and a wider desktop capture. */
+.project-gallery {
+  min-width: 0;
+  min-height: 360px;
+  padding: 22px;
+  display: grid;
+  grid-template-columns: minmax(105px, .34fr) minmax(0, .66fr);
+  gap: 18px;
+  align-items: center;
+  background: var(--surface-soft);
+}
+.device-shot { min-width: 0; margin: 0; }
+.shot-label { margin-bottom: 9px; color: var(--subtle); font-size: 9px; font-weight: 700; letter-spacing: .13em; text-align: center; }
+.phone-frame {
+  position: relative;
+  width: min(100%, 155px);
+  aspect-ratio: 9 / 19.5;
+  margin: 0 auto;
+  padding: 5px;
+  border: 1px solid #526258;
+  border-radius: 18px;
+  background: #080b09;
+  overflow: hidden;
+}
+.phone-frame img { width: 100%; height: 100%; display: block; object-fit: contain; border-radius: 13px; }
+.desktop-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border: 1px solid #526258;
+  border-radius: 7px;
+  padding: 5px;
+  background: #080b09;
+  overflow: hidden;
+}
+.desktop-frame img { width: 100%; height: 100%; display: block; object-fit: contain; border-radius: 3px; }
+.shot-placeholder {
+  position: absolute; inset: 5px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px;
+  padding: 8px; text-align: center; color: #c5d5c8;
+  background: linear-gradient(145deg, #1b2920, #121a15);
+  overflow-wrap: anywhere;
+}
+.shot-placeholder strong { font-size: 9px; letter-spacing: .08em; }
+.shot-placeholder span { color: var(--subtle); font-size: 8px; }
+.desktop-frame .shot-placeholder { inset: 5px; }
+.phone-frame .shot-placeholder { inset: 5px; border-radius: 13px; }
+
+.project-content { min-width: 0; padding: 32px; display: flex; flex-direction: column; align-items: flex-start; }
+.project-topline { width: 100%; display: flex; justify-content: space-between; gap: 12px; color: var(--subtle); font-size: 9px; letter-spacing: .12em; }
+.project-topline span:first-child { color: var(--accent); }
+h2 { letter-spacing: -.035em; line-height: 1.2; }
+.project-content h2 { font-size: 27px; margin: 20px 0 10px; }
+.description { color: var(--muted); font-size: 13px; margin: 0; }
+.tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 20px; }
+.tags span { border: 1px solid var(--line); border-radius: 3px; padding: 5px 9px; color: #c0cbc2; font-size: 10px; }
+.walkthrough { width: 100%; margin-top: 25px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.walkthrough summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 14px 0; color: var(--accent); font-size: 12px; font-weight: 600; }
+.walkthrough summary::-webkit-details-marker { display: none; }
+.chevron { font-size: 18px; transition: transform .2s; }
+.walkthrough[open] .chevron { transform: rotate(180deg); }
+.walkthrough-content { width: 100%; padding: 2px 0 20px; }
+.walkthrough-intro { color: var(--muted); font-size: 12px; margin: 0 0 18px; }
+.steps-grid { display: grid; grid-template-columns: 1fr; gap: 17px; }
+.step { display: grid; grid-template-columns: minmax(110px, 42%) minmax(0, 1fr); gap: 13px; align-items: start; margin: 0; }
+.step-image { aspect-ratio: 16 / 10; min-width: 0; position: relative; overflow: hidden; background: var(--surface-soft); border: 1px solid var(--line); border-radius: 4px; }
+.step-image img { width: 100%; height: 100%; display: block; object-fit: contain; }
+.step-placeholder { position: absolute; inset: 0; display: grid; align-content: center; justify-items: center; gap: 5px; padding: 8px; text-align: center; color: #c5d5c8; font-size: 9px; letter-spacing: .07em; background: linear-gradient(145deg, #1b2920, #121a15); overflow-wrap: anywhere; }
+.step-placeholder small { color: var(--subtle); font-size: 8px; letter-spacing: 0; }
+.step figcaption { min-width: 0; padding-top: 2px; }
+.step figcaption strong { font-size: 11px; font-weight: 600; }
+.step figcaption p { color: var(--muted); font-size: 10px; line-height: 1.6; margin: 5px 0 0; }
+.about { max-width: 650px; padding: 110px 0 90px; }
+.about h2, .contact h2 { font-size: clamp(29px, 4vw, 42px); margin: 0 0 15px; }
+.about > p:last-child { color: var(--muted); font-size: 14px; max-width: 590px; }
+.contact { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 38px 0; display: flex; justify-content: space-between; align-items: center; gap: 25px; }
+.contact .eyebrow { margin-bottom: 8px; }
+.contact h2 { margin: 0; }
+.contact > a { color: var(--accent); font-size: 13px; }
+footer { min-height: 78px; display: flex; align-items: center; justify-content: space-between; color: var(--subtle); font-size: 10px; letter-spacing: .08em; }
+
+@media (max-width: 900px) {
+  .project { grid-template-columns: 1fr; }
+  .project-gallery { min-height: 340px; }
+  .phone-frame { width: min(100%, 145px); }
+}
+@media (max-width: 600px) {
+  .header, main, footer { width: min(100% - 36px, 620px); }
+  .header { height: 68px; }
+  nav { gap: 15px; }
+  nav a { font-size: 11px; }
+  .intro { padding: 76px 0 46px; }
+  .intro-text { font-size: 14px; }
+  .project-gallery { min-height: 270px; padding: 16px 12px; grid-template-columns: minmax(88px, .34fr) minmax(0, .66fr); gap: 12px; }
+  .phone-frame { width: min(100%, 112px); border-radius: 14px; }
+  .desktop-frame { border-radius: 5px; }
+  .project-content { padding: 23px 20px; }
+  .project-content h2 { font-size: 24px; }
+  .step { grid-template-columns: 1fr; gap: 8px; }
+  .step-image { aspect-ratio: 16 / 9; }
+  .about { padding: 82px 0 65px; }
+  .contact { align-items: flex-start; flex-direction: column; }
+  footer { font-size: 9px; }
+}
+@media (max-width: 360px) {
+  .project-gallery { gap: 8px; padding: 12px 8px; }
+  .phone-frame { width: 92px; }
+  .shot-label { font-size: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
+
+/* Hide screenshot placeholders when the actual image loads */
+.shot-placeholder[hidden],
+.step-placeholder[hidden] {
+    display: none !important;
+}
+
+
+/* Make main project screenshots fill their frames */
+.phone-frame img,
+.desktop-frame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Keep phone screenshots aligned from the top */
+.phone-frame img {
+    object-position: center top;
+}
+
+/* Centre desktop screenshots */
+.desktop-frame img {
+    object-position: center center;
+}
+
+
+/* Make walkthrough screenshots fill their frames */
+.step-image {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.step-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/* =========================================================
+   Screenshot sizing update
+   Let screenshots keep their natural proportions so they
+   fill the available width without being cropped or zoomed.
+   ========================================================= */
+
+/* Main phone and desktop gallery */
+.project-gallery {
+  align-items: start;
+  align-content: start;
+  min-height: auto;
+}
+
+.phone-frame {
+  width: min(100%, 220px);
+  height: auto;
+  aspect-ratio: auto;
+  min-height: 260px;
+}
+
+.phone-frame img {
+  display: block;
+  width: 100%;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center top;
+}
+
+.desktop-frame {
+  width: 100%;
+  height: auto;
+  min-height: 180px;
+  aspect-ratio: auto;
+  padding: 3px;
+}
+
+.desktop-frame img {
+  display: block;
+  width: 100%;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center;
+}
+
+/* Placeholder sizing when a main screenshot has not been added */
+.phone-frame .shot-placeholder,
+.desktop-frame .shot-placeholder {
+  min-height: 170px;
+}
+
+/* Walkthrough: larger image first, description underneath */
+.steps-grid {
+  gap: 26px;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.step-image {
+  width: 100%;
+  height: auto;
+  min-height: 150px;
+  aspect-ratio: auto;
+  overflow: hidden;
+}
+
+.step-image img {
+  display: block;
+  width: 100%;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center;
+}
+
+.step figcaption {
+  padding-top: 0;
+}
+
+.step figcaption strong {
+  font-size: 12px;
+}
+
+.step figcaption p {
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+/* Keep empty-image placeholders visible and sized */
+.step-image .step-placeholder {
+  min-height: 150px;
+}
+
+/* Tablet and mobile */
+@media (max-width: 900px) {
+  .project-gallery {
+    min-height: 0;
+    align-items: start;
+  }
+
+  .phone-frame {
+    width: min(100%, 190px);
+  }
+
+  .steps-grid {
+    gap: 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-gallery {
+    min-height: 0;
+    align-items: start;
+  }
+
+  .phone-frame {
+    width: min(100%, 125px);
+    min-height: 200px;
+  }
+
+  .desktop-frame {
+    min-height: 120px;
+  }
+
+  .step {
+    grid-template-columns: 1fr;
+  }
+
+  .step-image {
+    min-height: 120px;
+  }
+
+  .step-image .step-placeholder {
+    min-height: 120px;
+  }
+}
